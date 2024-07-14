@@ -1,0 +1,21 @@
+# Node Modules
+node_modules/
+
+# Tailwind
+public/css/tailwind.css
+
+# Log files
+npm-debug.log
+yarn-error.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE configuration files
+.idea/
+.vscode/
+
+# Ignore package.json and package-lock.json
+package.json
+package-lock.json
