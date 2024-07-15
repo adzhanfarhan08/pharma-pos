@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-// if (!isset($_SESSION['username'])) {
-//     header("Location: login.php");
-//     exit;
-// }
-
 // Checking Role
 if (isset($_SESSION['role_id'])) {
     if ($_SESSION['role_id'] == 1) {
@@ -27,7 +22,7 @@ if (isset($_SESSION['role_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Tailwind Import -->
-    <link href="public/css/tailwind.css" rel="stylesheet">
+    <!-- <link href="public/css/tailwind.css" rel="stylesheet"> -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Dashboard</title>
 </head>
@@ -42,9 +37,8 @@ if (isset($_SESSION['role_id'])) {
                 <ul>
                     <nav class="bg-gray-800 text-white w-64 p-4">
                         <ul>
-                            <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Home</a></li>
-                            <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Profile</a></li>
-                            <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Settings</a></li>
+                            <li class="mb-2"><a href="http://localhost/pharma-pos/dashboard_admin.php" class="block p-2 rounded hover:bg-gray-700">Produk</a></li>
+                            <li class="mb-2"><a href="http://localhost/pharma-pos/monitoring.php" class="block p-2 rounded hover:bg-gray-700">Monitoring User</a></li>
                             <li class="mb-2 text-red-500"><a href="logout.php" class="block p-2 rounded hover:bg-gray-700">Logout</a></li>
                         </ul>
                     </nav>

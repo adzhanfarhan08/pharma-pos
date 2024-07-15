@@ -26,29 +26,51 @@ if (isset($_SESSION['role_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind Import -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <link href="public/css/tailwind.css" rel="stylesheet"> -->
     <title>Dashboard - Marketplace Penjualan Obat</title>
-    <link href="public/css/tailwind.css" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100">
     <div class="min-h-screen flex flex-col">
         <header class="bg-blue-600 text-white p-4">
-            <h1 class="text-3xl">Dashboard - Marketplace Penjualan Obat</h1>
+            <h1 class="text-3xl">Pharma Marketplace</h1>
         </header>
         <div class="flex flex-1">
             <nav class="bg-gray-800 text-white w-64 p-4">
                 <ul>
                     <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Dashboard</a></li>
-                    <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Produk</a></li>
+                    <!-- <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Produk</a></li>
                     <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Transaksi</a></li>
-                    <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Pengaturan</a></li>
+                    <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Pengaturan</a></li> -->
                     <li class="mb-2 text-red-500"><a href="logout.php" class="block p-2 rounded hover:bg-gray-700">Logout</a></li>
                 </ul>
             </nav>
             <main class="flex-1 p-4">
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <h2 class="text-2xl font-bold mb-4">Selamat Datang di Dashboard Marketplace Penjualan Obat</h2>
-                    <p class="text-gray-700">Ini adalah tampilan dashboard untuk manajemen marketplace penjualan obat menggunakan PHP dan Tailwind CSS.</p>
+                    <h2 class="text-2xl font-bold mb-4">Welcome to Dashboard</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Informasi Produk 1 -->
+                        <div class="flex items-center p-4 bg-gray-200 rounded-lg">
+                            <img src="" alt="Product Image" class="w-20 h-20 rounded-full">
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold">Paracetamol</h3>
+                                <p class="text-gray-700">Jumlah: 15</p>
+                                <p class="text-gray-700">Harga: Rp 22.000</p>
+                            </div>
+                        </div>
+
+                        <!-- Informasi Produk 2 -->
+                        <div class="flex items-center p-4 bg-gray-200 rounded-lg">
+                            <img src="" alt="Product Image" class="w-20 h-20 rounded-full">
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold">Vitacimin C</h3>
+                                <p class="text-gray-700">Jumlah: 9</p>
+                                <p class="text-gray-700">Harga: Rp 1.000</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
