@@ -1,4 +1,4 @@
-# PHARMA POS
+# PHARMA POS v0.1.0
 ## 1. Node JS
 - Download and install Node JS
 ## 2. Tailwind
