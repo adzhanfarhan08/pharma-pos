@@ -1,9 +1,22 @@
 <?php
 session_start();
-if ($_SESSION['status_login'] != true) {
-    echo '<script>
-    window.location = "login.php";
-</script>';
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
+
+// Checking Role
+if (isset($_SESSION['role_id'])) {
+    if ($_SESSION['role_id'] == 1) {
+        // Admin Page
+        $welcome_message = "Selamat datang, admin";
+    } elseif ($_SESSION['role_id'] == 2) {
+        // User Page
+        $welcome_message = "Selamat datang";
+    } else {
+        $welcome_message = "Selamat datang";
+    }
 }
 ?>
 
@@ -13,7 +26,9 @@ if ($_SESSION['status_login'] != true) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind Import -->
     <link href="public/css/tailwind.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Dashboard</title>
 </head>
 
@@ -23,11 +38,16 @@ if ($_SESSION['status_login'] != true) {
             <h1 class="text-3xl">Dashboard</h1>
         </header>
         <div class="flex flex-1">
-            <nav class="bg-gray-800 text-white w-64 p-4">
+            <nav class="bg-gray-800 text-white w-64">
                 <ul>
-                    <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Home</a></li>
-                    <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Profile</a></li>
-                    <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Settings</a></li>
+                    <nav class="bg-gray-800 text-white w-64 p-4">
+                        <ul>
+                            <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Home</a></li>
+                            <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Profile</a></li>
+                            <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Settings</a></li>
+                            <li class="mb-2 text-red-500"><a href="logout.php" class="block p-2 rounded hover:bg-gray-700">Logout</a></li>
+                        </ul>
+                    </nav>
                 </ul>
             </nav>
             <main class="flex-1 p-4">
