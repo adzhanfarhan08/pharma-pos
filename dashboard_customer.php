@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+// if (!isset($_SESSION['username'])) {
+//     header("Location: login.php");
+//     exit;
+// }
+
+// Checking Role
+if (isset($_SESSION['role_id'])) {
+    if ($_SESSION['role_id'] == 1) {
+        // Admin Page
+        $welcome_message = "Selamat datang, admin";
+    } elseif ($_SESSION['role_id'] == 2) {
+        // User Page
+        $welcome_message = "Selamat datang";
+    } else {
+        $welcome_message = "Selamat datang";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +42,7 @@
                     <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Produk</a></li>
                     <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Transaksi</a></li>
                     <li class="mb-2"><a href="#" class="block p-2 rounded hover:bg-gray-700">Pengaturan</a></li>
+                    <li class="mb-2 text-red-500"><a href="logout.php" class="block p-2 rounded hover:bg-gray-700">Logout</a></li>
                 </ul>
             </nav>
             <main class="flex-1 p-4">

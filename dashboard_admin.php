@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit;
-}
+// if (!isset($_SESSION['username'])) {
+//     header("Location: login.php");
+//     exit;
+// }
 
 // Checking Role
 if (isset($_SESSION['role_id'])) {
@@ -56,7 +56,7 @@ if (isset($_SESSION['role_id'])) {
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <!-- Informasi Produk 1 -->
                         <div class="flex items-center p-4 bg-gray-200 rounded-lg">
-                            <img src="path_to_your_image.jpg" alt="Product Image" class="w-20 h-20 rounded-full">
+                            <img src="" alt="Product Image" class="w-20 h-20 rounded-full">
                             <div class="ml-4">
                                 <h3 class="text-lg font-semibold">Nama Produk 1</h3>
                                 <p class="text-gray-700">Jumlah: 100</p>
@@ -66,7 +66,7 @@ if (isset($_SESSION['role_id'])) {
 
                         <!-- Informasi Produk 2 -->
                         <div class="flex items-center p-4 bg-gray-200 rounded-lg">
-                            <img src="path_to_your_image.jpg" alt="Product Image" class="w-20 h-20 rounded-full">
+                            <img src="" alt="Product Image" class="w-20 h-20 rounded-full">
                             <div class="ml-4">
                                 <h3 class="text-lg font-semibold">Nama Produk 2</h3>
                                 <p class="text-gray-700">Jumlah: 75</p>

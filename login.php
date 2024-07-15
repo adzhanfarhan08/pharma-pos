@@ -9,9 +9,19 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            if (login($username, $password, $conn)) {
+            $role = login($username, $password, $conn);
+
+            if ($role != false) {
                 $_SESSION['username'] = $username;
-                header("Location:dashboard.php");
+                $_SESSION['role'] = $role;
+
+                echo '<script>alert("Role ' . $role . '")</script>';
+
+                if ($role == 1) {
+                    header("Location: dashboard_admin.php");
+                } elseif ($role == 2) {
+                    header("Location: dashboard_customer.php");
+                }
                 exit();
             } else {
                 echo '<script>alert("Username atau password yang anda masukkan salah")</script>';
