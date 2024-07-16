@@ -32,7 +32,7 @@
             <main class="flex-1 p-4">
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <!-- Product Input -->
-                    <form action="save_product.php" method="POST">
+                    <form action="save_product.php" method="POST" enctype="multipart/form-data">
                         <label for="product_name">Nama Produk:</label>
                         <input class="bg-gray-200" type="text" id="product_name" name="product_name" required><br><br>
 
@@ -42,9 +42,7 @@
                         <label for="price">Harga:</label>
                         <input class="bg-gray-200" type="number" id="price" name="price" required><br><br>
 
-                        <div>
-                            <input type="submit" value="Simpan Produk" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                        </div>
+                        <input type="submit" value="Simpan Produk" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                     </form>
                 </div>
         </div>

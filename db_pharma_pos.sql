@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2024 at 03:55 PM
+-- Generation Time: Jul 16, 2024 at 07:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,19 +32,16 @@ CREATE TABLE `tb_product` (
   `product_name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `price` decimal(10,2) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tb_product`
 --
 
-INSERT INTO `tb_product` (`id`, `product_name`, `description`, `price`, `created_at`) VALUES
-(1, 'Ahh', 'Gak tau', 10000.00, '2024-07-16 13:14:52'),
-(2, 'Ciki', 'Gak tau', 10000.00, '2024-07-16 13:17:14'),
-(3, 'Chocolatos', 'Gak tau', 10000.00, '2024-07-16 13:21:28'),
-(4, 'Good day', 'Gak tau', 10000.00, '2024-07-16 13:21:57'),
-(5, 'asd', 'asd', 10000.00, '2024-07-16 13:27:40');
+INSERT INTO `tb_product` (`id`, `product_name`, `description`, `price`, `created_at`, `image`) VALUES
+(1, 'Paracetamol', 'Penurun panas', 18500.00, '2024-07-16 17:24:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -84,8 +81,8 @@ CREATE TABLE `tb_users` (
 --
 
 INSERT INTO `tb_users` (`user_id`, `username`, `password`, `email`, `role_id`) VALUES
-(8, 'admin', 'admin', NULL, 1),
-(11, 'budi', 'budi1234', 'budi@gmail.com', 2);
+(1, 'admin', 'admin', NULL, 1),
+(2, 'budi', 'budi1234', 'budi@gmail.com', 2);
 
 --
 -- Indexes for dumped tables
@@ -119,7 +116,7 @@ ALTER TABLE `tb_users`
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_roles`
@@ -131,7 +128,7 @@ ALTER TABLE `tb_roles`
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

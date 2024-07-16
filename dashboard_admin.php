@@ -1,18 +1,20 @@
 <?php
 session_start();
+include 'db.php';
 
-// Checking Role
-if (isset($_SESSION['role_id'])) {
-    if ($_SESSION['role_id'] == 1) {
-        // Admin Page
-        $welcome_message = "Selamat datang, admin";
-    } elseif ($_SESSION['role_id'] == 2) {
-        // User Page
-        $welcome_message = "Selamat datang";
-    } else {
-        $welcome_message = "Selamat datang";
-    }
+// Koneksi ke database
+$hostname = 'localhost';
+$username = 'root';
+$password = '';
+$dbname = 'db_pharma_pos';
+
+$koneksi = new mysqli($hostname, $username, $password, $dbname);
+
+// Check koneksi
+if ($koneksi->connect_error) {
+    die("Koneksi ke database gagal: " . $koneksi->connect_error);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +39,7 @@ if (isset($_SESSION['role_id'])) {
                 <ul>
                     <nav class="bg-gray-800 text-white w-64 p-4">
                         <ul>
-                        <li class="mb-2"><a href="dashboard_admin.php" class="block p-2 rounded hover:bg-gray-700">Home</a></li>
+                            <li class="mb-2"><a href="dashboard_admin.php" class="block p-2 rounded hover:bg-gray-700">Home</a></li>
                             <li class="mb-2"><a href="monitoring.php" class="block p-2 rounded hover:bg-gray-700">Monitoring User</a></li>
                             <li class="mb-2"><a href="product.php" class="block p-2 rounded hover:bg-gray-700">Product Input</a></li>
                             <li class="mb-2 text-red-500"><a href="logout.php" class="block p-2 rounded hover:bg-gray-700">Logout</a></li>
@@ -49,25 +51,39 @@ if (isset($_SESSION['role_id'])) {
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <h2 class="text-2xl font-bold mb-4">Welcome to Dashboard</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Informasi Produk 1 -->
-                        <div class="flex items-center p-4 bg-gray-200 rounded-lg">
-                            <img src="" alt="Product Image" class="w-20 h-20 rounded-full">
-                            <div class="ml-4">
-                                <h3 class="text-lg font-semibold">Nama Produk 1</h3>
-                                <p class="text-gray-700">Jumlah: 100</p>
-                                <p class="text-gray-700">Harga: Rp 50,000</p>
-                            </div>
-                        </div>
+                        <?php
+                        // Query untuk mengambil data produk
+                        $query = "SELECT * FROM tb_product";
+                        $result = $koneksi->query($query);
 
-                        <!-- Informasi Produk 2 -->
-                        <div class="flex items-center p-4 bg-gray-200 rounded-lg">
-                            <img src="" alt="Product Image" class="w-20 h-20 rounded-full">
-                            <div class="ml-4">
-                                <h3 class="text-lg font-semibold">Nama Produk 2</h3>
-                                <p class="text-gray-700">Jumlah: 75</p>
-                                <p class="text-gray-700">Harga: Rp 75,000</p>
-                            </div>
-                        </div>
+                        if ($result->num_rows > 0) {
+                            // Output data dari setiap baris
+                            echo "<table class='min-w-full divide-y divide-gray-200'>";
+                            echo "<thead class='bg-gray-50'>";
+                            // echo "<tr><th class='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Gambar</th>";
+                            echo "<th class='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Nama Produk</th>";
+                            echo "<th class='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Deskripsi</th>";
+                            echo "<th class='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Harga</th></tr>";
+                            echo "</thead>";
+                            echo "<tbody class='bg-white divide-y divide-gray-200'>";
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                // Tampilkan gambar dengan tag img
+                                // echo "<td class='px-6 py-4 whitespace-nowrap text-center'><img src='uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['product_name']) . "' class='h-16 w-16 object-cover'></td>";
+                                echo "<td class='px-6 py-4 whitespace-nowrap text-center'>" . htmlspecialchars($row['product_name']) . "</td>";
+                                echo "<td class='px-6 py-4 whitespace-nowrap text-center'>" . htmlspecialchars($row['description']) . "</td>";
+                                echo "<td class='px-6 py-4 whitespace-nowrap text-center'>" . htmlspecialchars($row['price']) . "</td>";
+                                echo "</tr>";
+                            }
+                            echo "</tbody>";
+                            echo "</table>";
+                        } else {
+                            echo "Tidak ada produk tersedia.";
+                        }
+
+                        // Tutup koneksi database
+                        $koneksi->close();
+                        ?>
                     </div>
                 </div>
             </main>
