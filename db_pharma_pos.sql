@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2024 at 01:18 PM
+-- Generation Time: Jul 16, 2024 at 03:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,30 +24,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_category`
---
-
-CREATE TABLE `tb_category` (
-  `category_id` int(11) NOT NULL,
-  `category_name` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tb_product`
 --
 
 CREATE TABLE `tb_product` (
-  `product_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `product_name` varchar(100) NOT NULL,
-  `product_price` int(11) NOT NULL,
-  `product_description` text NOT NULL,
-  `product_image` varchar(100) NOT NULL,
-  `product_status` tinyint(1) NOT NULL,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_product`
+--
+
+INSERT INTO `tb_product` (`id`, `product_name`, `description`, `price`, `created_at`) VALUES
+(1, 'Ahh', 'Gak tau', 10000.00, '2024-07-16 13:14:52'),
+(2, 'Ciki', 'Gak tau', 10000.00, '2024-07-16 13:17:14'),
+(3, 'Chocolatos', 'Gak tau', 10000.00, '2024-07-16 13:21:28'),
+(4, 'Good day', 'Gak tau', 10000.00, '2024-07-16 13:21:57'),
+(5, 'asd', 'asd', 10000.00, '2024-07-16 13:27:40');
 
 -- --------------------------------------------------------
 
@@ -87,25 +84,18 @@ CREATE TABLE `tb_users` (
 --
 
 INSERT INTO `tb_users` (`user_id`, `username`, `password`, `email`, `role_id`) VALUES
-(6, 'budi', 'budi1234', 'budi@gmail.com', 2),
-(7, 'wawa', 'wawa1234', 'wawa@gmail.com', 2);
+(8, 'admin', 'admin', NULL, 1),
+(11, 'budi', 'budi1234', 'budi@gmail.com', 2);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tb_category`
---
-ALTER TABLE `tb_category`
-  ADD PRIMARY KEY (`category_id`);
-
---
 -- Indexes for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  ADD PRIMARY KEY (`product_id`),
-  ADD KEY `category_id` (`category_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_roles`
@@ -126,16 +116,10 @@ ALTER TABLE `tb_users`
 --
 
 --
--- AUTO_INCREMENT for table `tb_category`
---
-ALTER TABLE `tb_category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `tb_product`
 --
 ALTER TABLE `tb_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_roles`
@@ -147,7 +131,7 @@ ALTER TABLE `tb_roles`
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
