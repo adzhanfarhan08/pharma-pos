@@ -14,7 +14,6 @@ $koneksi = new mysqli($hostname, $username, $password, $dbname);
 if ($koneksi->connect_error) {
     die("Koneksi ke database gagal: " . $koneksi->connect_error);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +23,6 @@ if ($koneksi->connect_error) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Tailwind Import -->
-    <!-- <link href="public/css/tailwind.css" rel="stylesheet"> -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Dashboard</title>
 </head>
@@ -60,19 +58,25 @@ if ($koneksi->connect_error) {
                             // Output data dari setiap baris
                             echo "<table class='min-w-full divide-y divide-gray-200'>";
                             echo "<thead class='bg-gray-50'>";
-                            // echo "<tr><th class='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Gambar</th>";
+                            echo "<tr>";
                             echo "<th class='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Nama Produk</th>";
                             echo "<th class='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Deskripsi</th>";
-                            echo "<th class='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Harga</th></tr>";
+                            echo "<th class='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Harga</th>";
+                            echo "<th class='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Aksi</th>";
+                            echo "</tr>";
                             echo "</thead>";
                             echo "<tbody class='bg-white divide-y divide-gray-200'>";
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
-                                // Tampilkan gambar dengan tag img
-                                // echo "<td class='px-6 py-4 whitespace-nowrap text-center'><img src='uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['product_name']) . "' class='h-16 w-16 object-cover'></td>";
                                 echo "<td class='px-6 py-4 whitespace-nowrap text-center'>" . htmlspecialchars($row['product_name']) . "</td>";
                                 echo "<td class='px-6 py-4 whitespace-nowrap text-center'>" . htmlspecialchars($row['description']) . "</td>";
                                 echo "<td class='px-6 py-4 whitespace-nowrap text-center'>" . htmlspecialchars($row['price']) . "</td>";
+                                echo "<td class='px-6 py-4 whitespace-nowrap text-center'>
+                                    <form action='delete_product.php' method='POST' onsubmit='return confirm(\"Apakah Anda yakin ingin menghapus produk ini?\");'>
+                                        <input type='hidden' name='product_id' value='" . $row['id'] . "'>
+                                        <input type='submit' value='Hapus' class='px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50'>
+                                    </form>
+                                </td>";
                                 echo "</tr>";
                             }
                             echo "</tbody>";
